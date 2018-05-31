@@ -88,6 +88,11 @@ export default EmberObject.extend({
 
   onMessage(event) {
     let data = JSON.parse(event.data);
+    
+    if (data.identifier === "_ping") {
+      get(this, 'monitor').ping();
+    }
+    
     switch (data.type) {
       case 'welcome':
         get(this, 'monitor').connected();
